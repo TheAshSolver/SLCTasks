@@ -1,7 +1,11 @@
+version: '3.8'
+
 volumes:
   subgraphs_data:
+  wp_db_data:
 
 services:
+  # --- TASK A SERVICES ---
   mongo:
     image: mongo:4.4
     volumes:
@@ -10,15 +14,6 @@ services:
       - ./.env.example
     ports:
       - 27017:27017
-
-  # mongo-express:
-  #   image: mongo-express:latest
-  #   ports:
-  #     - 8081:8081
-  #   depends_on:
-  #     - mongo
-  #   env_file:
-  #     - ./.env.example
 
   gateway:
     build: ./gateway
@@ -41,8 +36,6 @@ services:
     ports:
       - 80:80
     depends_on:
-      - auth
-      - files
       - gateway
       - web
 
@@ -58,27 +51,6 @@ services:
       - ./.env.example
       - ./web/.env.example
 
-  # apis
-  auth:
-    build: ./apis/auth-dev
-    volumes:
-      - ./apis/auth-dev:/app
-      - ./config:/app/config
-    env_file:
-      - ./.env.example
-      - ./apis/auth-dev/.env.example
-
-  files:
-    build: ./apis/files
-    volumes:
-      - ./.mounted/files:/files
-      - ./static_files:/static_files:ro
-      - ./config:/app/config
-    env_file:
-      - ./.env.example
-      - ./apis/files/.env.example
-
-  # subgraphs
   interfaces:
     build: ./subgraphs/interfaces
     volumes:
@@ -131,3 +103,29 @@ services:
       - ./.env.example
     dns:
       - 10.4.20.204
+
+  # --- TASK B SERVICES (WordPress) ---
+  wp-db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: wordpress
+    volumes:
+      - wp_db_data:/var/lib/mysql
+
+  wordpress:
+    image: wordpress:latest
+    restart: always
+    depends_on:
+      - wp-db
+      - gateway
+    ports:
+      - "8080:80"
+    environment:
+      WORDPRESS_DB_HOST: wp-db:3306
+      WORDPRESS_DB_USER: root
+      WORDPRESS_DB_PASSWORD: password
+      WORDPRESS_DB_NAME: wordpress
+    volumes:
+      - ./wp-content:/var/www/html/wp-content
