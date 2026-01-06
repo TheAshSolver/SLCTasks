@@ -1,0 +1,6 @@
+fastapi==0.116.1
+email_validator >=2.2.0
+httpx==0.28.1
+msal==1.33.0
+pymongo==4.14.1
+strawberry-graphql[debug-server]==0.280.0

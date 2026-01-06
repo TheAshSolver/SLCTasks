@@ -1,0 +1,8 @@
+.idea/
+*venv/
+.in
+.out
+__pycache__/
+.env
+build/
+.ruff_cache/
