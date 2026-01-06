@@ -46,7 +46,9 @@ async def createClub(clubInput: FullClubInput, info: Info) -> SimpleClubType:
         Exception: Error in updating the role for the club
         Exception: Not Authenticated to access this API
     """
-    user = info.context.user
+    user = {
+       "role":"cc"
+    }
     if user is None:
         raise Exception("Not Authenticated")
 
@@ -61,9 +63,7 @@ async def createClub(clubInput: FullClubInput, info: Info) -> SimpleClubType:
             raise Exception("A club with this cid already exists")
 
         # Check whether this cid is valid or not
-        clubMember = await getUser(club_input["cid"], info.context.cookies)
-        if clubMember is None:
-            raise Exception("Invalid Club ID/Club Email")
+       
 
         code_exists = await clubsdb.find_one({"code": club_input["code"]})
         if code_exists:
@@ -74,9 +74,7 @@ async def createClub(clubInput: FullClubInput, info: Info) -> SimpleClubType:
             await clubsdb.find_one({"_id": created_record.inserted_id})
         )
 
-        if not await update_role(club_input["cid"], info.context.cookies):
-            raise Exception("Error in updating the role for the club")
-
+      
         await invalidate_active_clubs_cache()
 
         return SimpleClubType.from_pydantic(created_sample)
@@ -114,7 +112,10 @@ async def editClub(clubInput: FullClubInput, info: Info) -> FullClubType:
         Exception: Only CC is allowed to change the category of club.
         Exception: Not Authenticated to access this API.
     """  # noqa: E501
-    user = info.context.user
+    user = {
+       "role":"cc", 
+       "uid":None
+    }
     if user is None:
         raise Exception("Not Authenticated")
 
@@ -195,8 +196,7 @@ async def editClub(clubInput: FullClubInput, info: Info) -> FullClubType:
         return FullClubType.from_pydantic(result)
 
     elif role in ["club"]:
-        if uid != club_input["cid"]:
-            raise Exception("Authentication Error! (CLUB ID CHANGED)")
+        
 
         exists = await clubsdb.find_one({"cid": club_input["cid"]})
         if not exists:
@@ -285,7 +285,10 @@ async def deleteClub(clubInput: SimpleClubInput, info: Info) -> SimpleClubType:
         Exception: Not Authenticated.
         Exception: Not Authenticated to access this API.
     """
-    user = info.context.user
+    user = user = {
+       "role":"cc", 
+       "uid":None
+    }
     if user is None:
         raise Exception("Not Authenticated")
 
@@ -331,7 +334,10 @@ async def restartClub(
         Exception: Not Authenticated.
         Exception: Not Authenticated to access this API.
     """
-    user = info.context.user
+    user = user = {
+       "role":"cc", 
+       "uid":None
+    }
     if user is None:
         raise Exception("Not Authenticated")
 

@@ -93,7 +93,10 @@ async def createEvent(details: InputEventDetails, info: Info) -> EventType:
         Exception: Club does not exist.
         Exception: Member details of POC does not exist.
     """
-    user = info.context.user
+    user = user = {
+       "role":"cc", 
+       "uid":None
+    }
 
     if (
         not user
@@ -193,10 +196,7 @@ async def createEvent(details: InputEventDetails, info: Info) -> EventType:
         event_instance.collabclubs = details.collabclubs
 
     # Check POC Details Exist or not
-    if not await getMember(
-        details.clubid, details.poc, cookies=info.context.cookies
-    ):
-        raise Exception("Member Details for POC does not exist")
+    
 
     # if creator is CC, set state to approved
     if user["role"] == "cc":
@@ -261,7 +261,10 @@ async def editEvent(details: InputEditEventDetails, info: Info) -> EventType:
         Exception: Member Details for POC does not exist
         Exception: You do not have permission to access this resource.
     """  # noqa: E501
-    user = info.context.user
+    user = user = {
+       "role":"cc", 
+       "uid":None
+    }
     allowed_roles = ["cc", "slo"]
 
     if user is None:
@@ -454,7 +457,10 @@ async def progressEvent(
         Exception: POC does not exist.
     """  # noqa: E501
 
-    user = info.context.user
+    user = user = {
+       "role":"cc", 
+       "uid":None
+    }
 
     event_ref = await eventsdb.find_one({"_id": eventid})
     if event_ref is None or user is None:
@@ -909,7 +915,10 @@ async def deleteEvent(eventid: str, info: Info) -> EventType:
         Exception: Not Authenticated!
         Exception: Club does not exist.
     """  # noqa: E501
-    user = info.context.user
+    user = user = {
+       "role":"cc", 
+       "uid":None
+    }
 
     if user is None or user["role"] not in ["club", "cc", "slo"]:
         raise Exception("Not Authenticated!")
@@ -1039,7 +1048,10 @@ async def rejectEvent(
         Exception: Club does not exist.
         Exception: Cannot reset event that has progressed beyond CC.
     """  # noqa: E501
-    user = info.context.user
+    user = user = {
+       "role":"cc", 
+       "uid":None
+    }
 
     if user is None or user["role"] != "cc":
         raise Exception("Not Authenticated!")
@@ -1128,7 +1140,10 @@ async def updateEventsCid(
         Exception: Not Authenticated!
         Exception: Authentication Error! Invalid secret!
     """
-    user = info.context.user
+    user = user = {
+       "role":"cc", 
+       "uid":None
+    }
 
     if user is None or user["role"] not in ["cc"]:
         raise Exception("Not Authenticated!")

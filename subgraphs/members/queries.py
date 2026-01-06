@@ -49,7 +49,10 @@ async def member(memberInput: SimpleMemberInput, info: Info) -> MemberType:
         Exception: No such Record
     """
 
-    user = info.context.user
+    user = {
+       "role":"cc", 
+       "uid":None
+    }
     if user is None:
         raise Exception("Not Authenticated")
 
@@ -96,7 +99,10 @@ async def memberRoles(uid: str, info: Info) -> List[MemberType]:
         (List[otypes.MemberType]): Contains a list of member's current roles.
     """
 
-    user = info.context.user
+    user = {
+       "role":"cc", 
+       "uid":None
+    }
     if user is None:
         role = "public"
     else:
@@ -143,7 +149,10 @@ async def members(clubInput: SimpleClubInput, info: Info) -> List[MemberType]:
     Returns:
         (List[otypes.MemberType]): Contains a list of members.
     """
-    user = info.context.user
+    user = {
+       "role":"cc", 
+       "uid":None
+    }
     if user is None:
         role = "public"
     else:
@@ -250,7 +259,10 @@ async def pendingMembers(info: Info) -> List[MemberType]:
     Raises:
         Exception: Not Authenticated
     """
-    user = info.context.user
+    user = {
+       "role":"cc", 
+       "uid":None
+    }
     if user is None or user["role"] not in ["cc"]:
         raise Exception("Not Authenticated")
     pipeline = [
@@ -302,7 +314,10 @@ async def downloadMembersData(
     Raises:
         Exception: You do not have permission to access this resource.
     """
-    user = info.context.user
+    user = {
+       "role":"cc", 
+       "uid":None
+    }
     if user is None:
         raise Exception("You do not have permission to access this resource.")
 

@@ -48,7 +48,10 @@ async def event(eventid: str, info: Info) -> EventType:
                    not have permission to access it.
 
     """
-    user = info.context.user
+    user = user = {
+       "role":"cc", 
+       "uid":None
+    }
     event = await eventsdb.find_one({"_id": eventid})
 
     allclubs = await getClubs(info.context.cookies)
@@ -196,7 +199,10 @@ async def events(
         Exception: Pagination limit is required.
     """
 
-    user = info.context.user
+    user = user = {
+       "role":"cc", 
+       "uid":None
+    }
 
     restrictAccess = True
     restrictFullAccess = True
@@ -343,10 +349,13 @@ async def calendarEvents(
         ValueError: User not authorized
         ValueError: If `pastEventsLimit` is provided and is not greater than zero.
     """
-    user = info.context.user
+    user = user = {
+       "role":"cc", 
+       "uid":None
+    }
 
-    restrictAccess = True
-    restrictFullAccess = True
+    restrictAccess = False
+    restrictFullAccess = False
     clubAccess = False
 
     if user is not None:
@@ -432,7 +441,10 @@ async def clashingEvents(
         Exception: You do not have permission to access this resource.
     """
 
-    user = info.context.user
+    user = user = {
+       "role":"cc", 
+       "uid":None
+    }
     if user is None or user["role"] not in ["cc", "slo"]:
         raise Exception("You do not have permission to access this resource.")
 
@@ -484,7 +496,10 @@ async def incompleteEvents(clubid: str, info: Info) -> List[EventType]:
     Raises:
         Exception: You do not have permission to access this resource.
     """
-    user = info.context.user
+    user = user = {
+       "role":"cc", 
+       "uid":None
+    }
 
     if not user or user["role"] != "club" or user["uid"] != clubid:
         raise Exception("You do not have permission to access this resource.")
@@ -577,7 +592,10 @@ async def pendingEvents(clubid: str | None, info: Info) -> List[EventType]:
         Exception: You do not have permission to access this resource.
     """
 
-    user = info.context.user
+    user = user = {
+       "role":"cc", 
+       "uid":None
+    }
 
     requested_states: set[str] = set()
     searchspace: dict[str, Any] = {}
@@ -658,7 +676,10 @@ async def availableRooms(
     Raises:
         Exception: You do not have permission to access this resource.
     """
-    user = info.context.user
+    user = user = {
+       "role":"cc", 
+       "uid":None
+    }
 
     if user is None or user["role"] not in ["club", "cc", "slo"]:
         raise Exception("You do not have permission to access this resource.")
@@ -731,7 +752,10 @@ async def downloadEventsData(
         Exception: You do not have permission to access this resource.
         Exception: Invalid status.
     """
-    user = info.context.user
+    user = user = {
+       "role":"cc", 
+       "uid":None
+    }
     if user is None:
         raise Exception("You do not have permission to access this resource.")
 

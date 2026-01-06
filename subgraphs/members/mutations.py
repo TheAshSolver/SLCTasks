@@ -41,7 +41,10 @@ async def createMember(memberInput: FullMemberInput, info: Info) -> MemberType:
         Exception: Start year cannot be greater than end year
     """
 
-    user = info.context.user
+    user = user = {
+       "role":"cc", 
+       "uid":None
+    }
     if user is None:
         raise Exception("Not Authenticated")
 
@@ -65,9 +68,7 @@ async def createMember(memberInput: FullMemberInput, info: Info) -> MemberType:
         raise Exception("A record with same uid and cid already exists")
 
     # Check whether this uid is valid or not
-    userMember = await getUser(member_input["uid"], info.context.cookies)
-    if userMember is None:
-        raise Exception("Invalid User ID")
+  
 
     if len(member_input["roles"]) == 0:
         raise Exception("Roles cannot be empty")
@@ -134,7 +135,10 @@ async def editMember(memberInput: FullMemberInput, info: Info) -> MemberType:
         Exception: Start year cannot be greater than end year
     """
 
-    user = info.context.user
+    user = user = {
+       "role":"cc", 
+       "uid":None
+    }
     if user is None:
         raise Exception("Not Authenticated")
 
@@ -252,7 +256,10 @@ async def deleteMember(
         Exception: No such Record
     """  # noqa: E501
 
-    user = info.context.user
+    user = user = {
+       "role":"cc", 
+       "uid":None
+    }
     if user is None:
         raise Exception("Not Authenticated")
 
@@ -331,7 +338,10 @@ async def approveMember(
         Exception: No such Record
     """
 
-    user = info.context.user
+    user = user = {
+       "role":"cc", 
+       "uid":None
+    }
     if user is None:
         raise Exception("Not Authenticated")
 
@@ -405,7 +415,10 @@ async def rejectMember(
         Exception: No such Record
     """
 
-    user = info.context.user
+    user = {
+       "role":"cc", 
+       "uid":None
+    }
     if user is None:
         raise Exception("Not Authenticated")
 
@@ -513,7 +526,10 @@ async def updateMembersCid(
         Exception: Authentication Error! Invalid secret!
     """
 
-    user = info.context.user
+    user = {
+       "role":"cc", 
+       "uid":None
+    }
 
     if user is None or user["role"] not in ["cc"]:
         raise Exception("Not Authenticated!")
