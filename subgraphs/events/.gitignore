@@ -1,0 +1,9 @@
+.idea/
+*venv/
+.in
+.out
+__pycache__/
+build/
+.ruff_cache/
+qodana.yaml
+scripts/reports/
