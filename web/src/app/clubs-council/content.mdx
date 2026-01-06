@@ -1,0 +1,229 @@
+import { Card, Box, Typography, Stack, Button, Grid } from "@mui/material";
+
+import Icon from "components/Icon";
+import ButtonLink from "components/Link";
+import Statistic from "components/Statistic";
+import ClubBanner from "components/clubs/ClubBanner";
+
+import { getStaticFile } from "utils/files";
+
+<Card variant="none" sx={{ boxShadow: 0 }}>
+  <ClubBanner
+    name="Clubs Council"
+    banner={getStaticFile("cc-banner.png")}
+    logo={"/assets/cc-logo-color.png"}
+    width={1500}
+    height={500}
+    imageProps={{ priority: true }}
+  />
+</Card>
+
+<Typography variant="h3" sx={{ mb: 2 }}>
+  Clubs Council @ IIITH
+</Typography>
+
+<Typography variant="body">
+The Clubs Council is the largest Student Administrative Organization at
+IIIT Hyderabad under **Students' Life Committee (SLC)**. 
+It acts as an umbrella body of all the institute affiliated and associate student-led Clubs, Groups & Societies.
+It handles the annual budget of clubs, events, coordinates among different clubs and helps in creating new clubs, societies and special interest groups.
+
+The Clubs Council works closely with the institute's Students' Life Office, Finance Council, Outreach, IT Offices, SLC and SAC faculty members, and all other student administrative bodies.
+
+The primary aim of the Clubs Council is to ensure that all student-driven organizations on campus are successful in their aim to cultivate diverse campus life experiences throughout the year, and enrich the thriving campus community outside the classroom, while fostering inclusion.
+
+</Typography>
+
+<Box sx={{ my: 3, width: "100%" }}>
+  <Grid container spacing={2}>
+    <Grid
+      size={{
+        xs: 12,
+        md: 4,
+      }}
+    >
+      <Statistic
+        color="success"
+        icon="groups-3-outline-rounded"
+        total={"25+"}
+        title="Student Constituent Groups"
+        sx={{ height: 200, p: 3 }}
+      />
+    </Grid>
+    <Grid
+      size={{
+        xs: 12,
+        md: 4,
+      }}
+    >
+      <Statistic
+        color="error"
+        icon="school-outline-rounded"
+        total={"70+"}
+        title="Student Coordinators"
+        sx={{ height: 200, p: 3 }}
+      />
+    </Grid>
+    <Grid
+      size={{
+        xs: 12,
+        md: 4,
+      }}
+    >
+      <Statistic
+        color="primary"
+        icon="map-outline-rounded"
+        total={"350+"}
+        title="Organizing Team Members"
+        sx={{ height: 200, p: 3 }}
+      />
+    </Grid>
+  </Grid>
+</Box>
+
+<Typography variant="h3" sx={{ mb: 2, mt: 4 }}>
+  Clubs @ IIITH
+</Typography>
+
+<Typography variant="body">
+  The clubs of IIIT-H conduct various captivating events throughout the year.
+  Students across all UG/PG batches engage in the events, which tells how lively
+  the campus life is! There are 2 Affinity Groups & 23 Clubs at IIITH, divided
+  into technical and cultural categories.
+  <Box sx={{ my: 2 }} />
+  Clubs on campus are run by students, for the students. Club activities help
+  develop new hobbies and interests in students and thereby contributing to the
+  all around development of the students.
+</Typography>
+
+<Box sx={{ my: 3, width: "100%" }}>
+  <Grid container spacing={2}>
+    <Grid
+      size={{
+        xs: 12,
+        md: 4,
+      }}
+    >
+      <Statistic
+        color="info"
+        icon="component-exchange"
+        total={8}
+        title="Technical Clubs"
+        sx={{ height: 200, p: 3 }}
+      />
+    </Grid>
+    <Grid
+      size={{
+        xs: 12,
+        md: 4,
+      }}
+    >
+      <Statistic
+        color="warning"
+        icon="music-note-rounded"
+        total={16}
+        title="Cultural Clubs"
+        sx={{ height: 200, p: 3 }}
+      />
+    </Grid>
+    <Grid
+      size={{
+        xs: 12,
+        md: 4,
+      }}
+    >
+      <Statistic
+        color="secondary"
+        icon="psychology-rounded"
+        total={2}
+        title="Affinity Groups"
+        sx={{ height: 200, p: 3 }}
+      />
+    </Grid>
+  </Grid>
+</Box>
+
+<Typography
+  variant="h3"
+  sx={{
+    mt: 5,
+  }}
+>
+  Team @ Clubs Council
+</Typography>
+
+<Stack
+  direction="row"
+  sx={{
+    mb: 2,
+  }}
+>
+  ### Executive Board
+  <Box sx={{ flexGrow: 1 }} />
+  <Button
+    variant="none"
+    color="secondary"
+    component={ButtonLink}
+    href="/clubs-council/all-members"
+  >
+    <Typography variant="button" color="text.primary">
+      View all
+    </Typography>
+    <Icon variant="chevron-right" />
+  </Button>
+</Stack>
+{props.ccMembers}
+
+<Stack
+  direction="row"
+  sx={{
+    pt: 2,
+    mb: 2,
+    mt: 3,
+  }}
+>
+  ### Advisory Board
+  <Box sx={{ flexGrow: 1 }} />
+  <Button
+    variant="none"
+    color="secondary"
+    component={ButtonLink}
+    href="/clubs-council/all-members"
+  >
+    <Typography variant="button" color="text.primary">
+      View all
+    </Typography>
+    <Icon variant="chevron-right" />
+  </Button>
+</Stack>
+{props.advisoryMembers}
+
+<Stack
+  direction="row"
+  sx={{
+    pt: 2,
+    mb: 2,
+    mt: 3,
+  }}
+>
+  ### Extended Team
+  <Box sx={{ flexGrow: 1 }} />
+  <Button
+    variant="none"
+    color="secondary"
+    component={ButtonLink}
+    href="/clubs-council/all-members"
+  >
+    <Typography variant="button" color="text.primary">
+      View all
+    </Typography>
+    <Icon variant="chevron-right" />
+  </Button>
+</Stack>
+{props.extendedMembers}
+
+### Club Coordinators and Members
+
+The Club Coordinators are an essential part of the Clubs Council, and they come together to collaboratively organise and provide an extraordinary range of opportunities in the form of various events, enabling students to pursue their hobbies and develop their extra-curricular skills.
+
+And then come the Club Members, who play an important role in design, development and execution of any event organised by the clubs, and contribute to the betterment of Students' Life at IIIT, Hyderabad.

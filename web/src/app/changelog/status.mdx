@@ -1,0 +1,5 @@
+{props.status.environment === "prod" && (<a target="_blank" rel="noreferrer" href="https://clubs_iiith.betteruptime.com/"><img src="https://uptime.betterstack.com/status-badges/v3/monitor/ikqm.svg" alt="Better Uptime Badge"/></a>)}
+
+**Environment:** {props.status.environment === "prod" ? "Production" : props.status.environment}  
+**Deployed Commit:** Version {props.version} - <a target="\_blank" rel="noreferrer" href={`https://github.com/Clubs-Council-IIITH/services/commit/${props.status.commit}`}>#{props.status.commit}</a>  
+**Last Update:** {new Date(props.status.timestamp).toLocaleString("en-IN", { dateStyle: "full", timeStyle: "medium" })}
