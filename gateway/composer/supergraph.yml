@@ -1,0 +1,26 @@
+federation_version: =2.9.3
+subgraphs:
+  clubs:
+    routing_url: http://clubs/graphql
+    schema:
+      file: /subgraphs/clubs.graphql
+
+  members:
+    routing_url: http://members/graphql
+    schema:
+      file: /subgraphs/members.graphql
+
+  events:
+    routing_url: http://events/graphql
+    schema:
+      file: /subgraphs/events.graphql
+
+  users:
+    routing_url: http://users/graphql
+    schema:
+      file: /subgraphs/users.graphql
+
+  interfaces:
+    routing_url: http://interfaces/graphql
+    schema:
+      file: /subgraphs/interfaces.graphql

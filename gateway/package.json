@@ -1,0 +1,23 @@
+{
+  "name": "gateway",
+  "type": "module",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/server.js"
+  },
+  "dependencies": {
+    "@apollo/gateway": "^2.11.2",
+    "@apollo/rover": "^0.35.0",
+    "@apollo/server": "^5.0.0",
+    "@as-integrations/express5": "^1.1.2",
+    "body-parser": "^2.2.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "express": "^5.1.0",
+    "express-jwt": "^8.5.1",
+    "graphql": "^16.11.0",
+    "jsonwebtoken": "^9.0.2"
+  }
+}
