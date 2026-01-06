@@ -1,7 +1,6 @@
 .env
 .venv/
 .vscode/
-.mounted/
 data/
 hooks/
 web-old/

@@ -1,0 +1,26 @@
+/*
+Theme Name: custom
+Theme URI: http://example.com/custom
+Author: Ashwin
+Author URI: http://example.com
+Description: A custom WordPress theme created for practice.
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: custom, theme, development
+Text Domain: my-custom-theme
+*/
+
+/* Basic Layout Styles */
+.clubs-grid, .overall {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-top: 20px;
+}
+.club-card, .card {
+    border: 1px solid #252020;
+    padding: 20px;
+    border-radius: 8px;
+    background: #fff;
+}
