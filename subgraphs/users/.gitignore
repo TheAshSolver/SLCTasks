@@ -1,0 +1,9 @@
+.idea/
+*venv/
+.vscode/
+.in
+.out
+__pycache__/
+build/
+.ruff_cache/
+scripts/reports/
